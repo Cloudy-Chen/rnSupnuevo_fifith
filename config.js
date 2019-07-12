@@ -4,14 +4,14 @@
 module.exports = {
 
 
-    //server:'http://192.168.1.121:8080/supnuevo',
+    // server:'http://211.87.224.40:8080/supnuevo',
     //server:'http://142.4.194.0:8080',//打包部署的地址//数据库在173上//
     //server:'http://supnuevo-ventas.com.ar:8080',//打包部署的地址//数据库在173上
     // server2: 'http://202.194.14.72',
     // server: 'http://202.194.14.73',
     // server2: 'http://192.168.1.106:8080/supnuevo_ventas',
-    // server2: 'http://192.168.1.102:8080/supnuevo_ventas',
-    // server: 'http://192.168.1.102:8080/supnuevo',
+    // server2: 'http://192.168.1.132:8080/supnuevo_ventas',
+    // server: 'http://192.168.1.132:8080/supnuevo',
     // server2: 'http://personalexpdocker.cloudapp.net:8081',//ventas服务器old
     server2:'http://Supnuevo-ventas.com.ar:8080',//ventas正式服务器
     server: 'http://www.supnuevo.com.ar:8080',//超市正式服务器

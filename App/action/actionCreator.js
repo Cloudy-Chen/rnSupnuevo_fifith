@@ -26,7 +26,7 @@ export let loginAction = function (username, password, cb) {
 
     return dispatch => {
         return new Promise((resolve, reject) => {
-            var versionName = "5.1";
+            var versionName = "5.2";
 
             CookieManager.clearAll().then(function (res) {
                 console.log('CookieManager.clearAll =>', res);
@@ -307,6 +307,15 @@ export let getSession = (ob) => {
             type: types.AUTH_ACCESS__ACK,
             auth: false
         }
+}
+
+export let changeAuth = (auth) => {
+    return dispatch => {
+        dispatch({
+            type: types.AUTH_ACCESS__ACK,
+            auth: !auth,
+        });
+    };
 }
 
 export let setAttachIdList = function (attachIdList) {

@@ -80,8 +80,6 @@ class CompanyInfo extends Component {
     }
 
     getPriceOptionList() {
-
-        this.setState({showProgress: true});
         let ventasId = this.props.ventasInfo.ventasId;
 
         let sessionId = this.props.sessionId;
@@ -101,6 +99,8 @@ class CompanyInfo extends Component {
         }).then((json) => {
             if(json.re==1){
 
+                //this.setState({showProgress: true});
+
                 var start = this.state.start;
                 var max = this.state.limit;
                 if (this.state.first === 1) {
@@ -115,11 +115,10 @@ class CompanyInfo extends Component {
                     body: {
                         ventasId: ventasId,
                         start:start,
-                        max:max
+                        max:max,
+                        merchantId:this.props.merchantId,
                     }
                 }).then((json) => {
-
-                    this.setState({showProgress: false});
 
                     if(json.re==1){
                         var json = json.data
@@ -153,8 +152,15 @@ class CompanyInfo extends Component {
             }else{
                 this.setState({showProgress: false});
             }
+
+            setTimeout(()=>{
+                this.setState({showProgress:false})
+            },1000)
         }).catch((err) => {
             alert(err);
+            setTimeout(()=>{
+                this.setState({showProgress:false})
+            },1000)
         });
     }
 
@@ -190,11 +196,18 @@ class CompanyInfo extends Component {
                         infoList[start+i].pictureurl = pictureurl;
                         //infoList[i].pictureurl = 'http://img5.mtime.cn/mg/2019/04/28/143651.43848115_120X90X4.jpg';
                     }
-                    this.setState({infoList:infoList,pictureList:pictureList})
+                    this.setState({infoList:infoList,pictureList:pictureList,showProgress:false})
                 }
             }
+            setTimeout(()=>{
+                this.setState({showProgress:false})
+            },1000)
+
         }).catch((err) => {
             alert(err);
+            setTimeout(()=>{
+                this.setState({showProgress:false})
+            },1000)
         });
     }
 
@@ -374,35 +387,6 @@ module.exports = connect(state => ({
         sessionId: state.user.sessionId,
         attachIdList:state.imageattach.attachIdList,
         pictureUrl:state.imageattach.pictureUrl,
+        merchantId:state.user.supnuevoMerchantId,
     })
 )(CompanyInfo);
-
-
-// getPictureByAttachId(idx,imageattachid) {
-//
-//     proxy.postes_ventas({
-//         url: Config.server2 + "/func/ventas/getImageDataByAttachIdFromSupnuevo",
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: {
-//             imageattachid: imageattachid,
-//         }
-//     }).then((json) => {
-//
-//         if(json.re==1){
-//             var json = json.data
-//             var errorMsg = json.message;
-//             if (errorMsg !== null && errorMsg !== undefined && errorMsg !== "") {
-//                 alert(errorMsg);
-//             } else {
-//                 var pictureurl = json.pictureurl;
-//                 var infoList = this.state.infoList;
-//                 infoList[idx].pictureurl = 'http://www.sportshot.cn/file/goodsPic/2018111524-1.jpg';
-//                 this.setState({infoList:infoList})
-//             }
-//         }
-//     }).catch((err) => {
-//         alert(err);
-//     });
-// }

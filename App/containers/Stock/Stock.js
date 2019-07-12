@@ -40,6 +40,7 @@ var proxy = require('../../proxy/Proxy');
 var Popover = require('react-native-popover');
 const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
 import CookieManager from 'react-native-cookies';
+import VentasInfoModal from '../../components/modal/VentasInfoModal'
 
 class Stock extends Component {
 
@@ -101,6 +102,18 @@ class Stock extends Component {
 
     dismisspopupDialog() {
         this.popupDialog.dismiss();
+    }
+
+    navigatorVentasInfoModal() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'VentasInfoModal',
+                component: VentasInfoModal,
+                params: {
+                }
+            })
+        }
     }
 
     navigatorVentasDetail(ventasInfo) {
@@ -563,6 +576,9 @@ class Stock extends Component {
     }
 
     componentDidMount() {
+
+        this.navigatorVentasInfoModal()
+
         //这个页面在打开的时候直接调用这个方法
         let userInput;
         let stockSearchType;
@@ -652,7 +668,7 @@ class Stock extends Component {
                     flexDirection: 'row'
                 }, styles.card]}>
                     <Text style={{fontSize: setSpText(20), flex: 3, textAlign: 'center', color: '#fff'}}>
-                        Supnuevo(5.1)-{this.props.username}
+                        Supnuevo(5.2)-{this.props.username}
                     </Text>
                 </View>
                 {/*nei rong*/}

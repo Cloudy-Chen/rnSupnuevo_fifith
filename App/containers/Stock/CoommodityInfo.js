@@ -160,6 +160,7 @@ class CoommodityInfo extends Component {
                     },
                     body: {
                         priceId: priceId * 1,
+                        merchantId:this.props.merchantId,
                     }
                 }).then((json) => {
                     if(json.re==1){
@@ -583,5 +584,6 @@ var styles = StyleSheet.create({
 module.exports = connect(state => ({
         username: state.user.username,
         sessionId: state.user.sessionId,
+        merchantId:state.user.supnuevoMerchantId,
     })
 )(CoommodityInfo);

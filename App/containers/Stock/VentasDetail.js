@@ -221,6 +221,11 @@ class VentasDetail extends Component {
                         <View style={{flex:3,borderWidth:1,borderColor:'#aaa',borderRadius:20,padding:10}}>{rubroListView}</View>
                     </View>
 
+                    <View style={{backgroundColor: '#fff',padding: 4,paddingTop:10,flexDirection: 'row',justifyContent:'flex-start',alignItems:'flex-start'}}>
+                        <View style={{flex:1}}><Text style={{fontSize:setSpText(16)}}>备注：</Text></View>
+                        <View style={{flex:3,borderBottomWidth:1,borderColor:'#aaa'}}><Text style={{fontSize:setSpText(18),color:'#000'}}>{ventasInfo.nota}</Text></View>
+                    </View>
+
                     <View style={{backgroundColor: '#fff',padding: 4,paddingTop:10,flexDirection: 'column',justifyContent:'flex-start',alignItems:'flex-start'}}>
                         <Text style={{fontSize:setSpText(16)}}>配送范围：</Text>
                     </View>

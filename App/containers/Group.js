@@ -136,6 +136,10 @@ class Group extends Component {
                         }
                     });
 
+                relatedGoods0.sort(function(a,b){
+                    return a.price - b.price
+                })
+
                 //TDOO:set state relatedGoods
                 this.setState({
                     relatedGoods0: relatedGoods0, relatedGoods1: relatedGoods1,goodIndex:goodIndex
@@ -529,7 +533,7 @@ class Group extends Component {
             price: props.price,
             selectAll: false,
             goodIndex:0,
-            appVersion:'app5.1'
+            appVersion:'app5.2'
         };
     }
 

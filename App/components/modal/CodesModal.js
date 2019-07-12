@@ -22,6 +22,8 @@ import { connect } from 'react-redux';
 var {height, width} = Dimensions.get('window');
 import WaitTip from "./WaitTip";
 import {setSpText} from '../../utils/ScreenUtil'
+import VentasDetail from "../../containers/Stock/VentasDetail";
+import CompanyInfo from "../../containers/Stock/CompanyInfo";
 
 class CodesModal extends Component{
 

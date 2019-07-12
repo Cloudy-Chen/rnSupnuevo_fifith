@@ -154,7 +154,7 @@ var Login = React.createClass({
                         justifyContent: 'center',
                         flexDirection: 'row'
                     }]}>
-                        <Text style={{color: '#fff', fontSize: setSpText(22)}}>supnuevo(5.1)</Text>
+                        <Text style={{color: '#fff', fontSize: setSpText(22)}}>supnuevo(5.2)</Text>
                     </View>
 
                     <View style={{justifyContent: 'center', flexDirection: 'row', padding: 10, marginTop: 10}}>
@@ -325,7 +325,7 @@ var Login = React.createClass({
                             flexDirection: 'row',
                             paddingTop:40
                         }]}>
-                            <Text style={{color: '#fff', fontSize: setSpText(22)}}>supnuevo(5.1)</Text>
+                            <Text style={{color: '#fff', fontSize: setSpText(22)}}>supnuevo(5.2)</Text>
                         </View>
 
                         <View style={{justifyContent: 'center', flexDirection: 'row', padding: 10, marginTop: 10}}>

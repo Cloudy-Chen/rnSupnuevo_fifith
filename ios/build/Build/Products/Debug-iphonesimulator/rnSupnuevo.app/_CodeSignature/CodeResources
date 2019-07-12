@@ -38,11 +38,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		Em2JhFuSX4eEBLryX2eVNYNrgF4=
+		FAKdTUR2tl5G5lL7xULeRSZRPPw=
 		</data>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<data>
-		UJ8zzw2Elrfi7Z6VIYzGN8NqSA8=
+		ql5uctaTnggXOu57mfB0E/eZTro=
 		</data>
 		<key>Entypo.ttf</key>
 		<data>
@@ -111,7 +111,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		AaUhuaAK6+batWYTxtxQKzKrb5M=
+		mzkdPCdjpQbbPjpQI2Y5MVYm+HQ=
 		</data>
 		<key>Ionicons.ttf</key>
 		<data>
@@ -151,7 +151,7 @@
 		</data>
 		<key>PlugIns/rnSupnuevoTests.xctest/rnSupnuevoTests</key>
 		<data>
-		xMWvOMcoLeIuFHlU4S2FG55K9l0=
+		ujhqa2lanuA7sJg4SS3M4v8IntQ=
 		</data>
 		<key>SimpleLineIcons.ttf</key>
 		<data>
@@ -256,22 +256,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Em2JhFuSX4eEBLryX2eVNYNrgF4=
+			FAKdTUR2tl5G5lL7xULeRSZRPPw=
 			</data>
 			<key>hash2</key>
 			<data>
-			oL6vQ8SYPGNBnvcSxsD4ue+/7Vvw7ZgFiLmgCB7U2L4=
+			HUdOSdJwnlP8ZJiVQR4TG+dkjU93GsvV1e9oDQAU9e4=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			UJ8zzw2Elrfi7Z6VIYzGN8NqSA8=
+			ql5uctaTnggXOu57mfB0E/eZTro=
 			</data>
 			<key>hash2</key>
 			<data>
-			1NrsQ6sMW2fh4dzf4k+JxBvxEHXDDvf8FrF+rAMCKxY=
+			tlFhlAbDjZ77DsUTNgzyTbJJar+MqUKNhnne45pPB3M=
 			</data>
 		</dict>
 		<key>Entypo.ttf</key>
@@ -533,11 +533,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			xMWvOMcoLeIuFHlU4S2FG55K9l0=
+			ujhqa2lanuA7sJg4SS3M4v8IntQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			jTB97MAbRhokEXzUKX8AHC25GQn0gNcZbEXorTPqWH8=
+			T8AG1YTJ4XOpEi95eqKIrprLQHn93cSeZdscBmTyDW4=
 			</data>
 		</dict>
 		<key>SimpleLineIcons.ttf</key>

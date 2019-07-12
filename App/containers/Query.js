@@ -35,13 +35,14 @@ import Modalbox from 'react-native-modalbox';
 import {setSpText} from '../utils/ScreenUtil'
 import Config from '../../config';
 import CodesModal from '../components/modal/CodesModal';
+import VentasInfoModal from '../components/modal/VentasInfoModal'
 import Group from './Group';
 import GroupQuery from './AddCommodityToGroup/GroupQuery';
 import priceDeviation from './PriceSurvey/PriceDeviation';
 import GoodUpdate from './GoodUpdate';
 import GoodAdd from './GoodAdd';
 import GroupManage from './GroupManage/index';
-import {setGoodsInfo, setScanTimerAction} from "../action/actionCreator";
+import {changeAuth, setGoodsInfo, setScanTimerAction} from "../action/actionCreator";
 import PriceSurvey from './PriceSurvey/PriceSurvey';
 import RNCamera from 'react-native-camera';
 import ReferencePrice from './ReferencePrice';
@@ -52,6 +53,8 @@ import CookieManager from 'react-native-cookies';
 import CompanyInfo from './Stock/CompanyInfo';
 import _ from 'lodash'
 import ViewFinder from '../utils/Viewfinder'
+import VentasDetail from "./Stock/VentasDetail";
+import Stock from './Stock/Stock'
 
 var Dimensions = require('Dimensions');
 var {height, width} = Dimensions.get('window');
@@ -322,6 +325,47 @@ class Query extends Component {
         });
     }
 
+    navigatorVentasDetail(ventasInfo) {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'VentasDetail',
+                component: VentasDetail,
+                params: {
+                    ventasInfo: ventasInfo,
+                }
+            })
+        }
+    }
+
+    navigatorCompanyInfo(ventasInfo) {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'CompanyInfo',
+                component: CompanyInfo,
+                params: {
+                    ventasInfo: ventasInfo,
+                    username: this.props.username,
+                    sessionId: this.props.sessionId,
+                    password: this.props.password,
+                }
+            })
+        }
+    }
+
+    navigatorVentasInfoModal() {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'VentasInfoModal',
+                component: VentasInfoModal,
+                params: {
+                }
+            })
+        }
+    }
+
     navigateGroupQuery() {
         const {navigator} = this.props;
         if (navigator) {
@@ -590,6 +634,39 @@ class Query extends Component {
             })
         }
 
+    }
+
+    navigate2Stock() {
+        this.setState({selectedTab:'进货'})
+    }
+
+    navigatorVentasDetail(ventasInfo) {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'VentasDetail',
+                component: VentasDetail,
+                params: {
+                    ventasInfo: ventasInfo,
+                }
+            })
+        }
+    }
+
+    navigatorCompanyInfo(ventasInfo) {
+        const {navigator} = this.props;
+        if (navigator) {
+            navigator.push({
+                name: 'CompanyInfo',
+                component: CompanyInfo,
+                params: {
+                    ventasInfo: ventasInfo,
+                    username: this.props.username,
+                    sessionId: this.props.sessionId,
+                    password: this.props.password,
+                }
+            })
+        }
     }
 
     updatePrice(price) {
@@ -863,6 +940,10 @@ class Query extends Component {
         }
     }
 
+    closeVentasInfoModal(){
+        this.setState({ventasInfoModalVisible:false})
+    }
+
     priceCalculation(data) {
 
         let priceShow = this.state.gengxingaijiaInput;
@@ -933,6 +1014,7 @@ class Query extends Component {
             codigo: null,
             selectedCodeInfo: {},
             jisuanConfigModalVisible: false,//计算键设置的modal
+            ventasInfoModalVisible:false,
             priceShow: null,
             inputPrice: null,
             taxMark: 0,
@@ -955,11 +1037,6 @@ class Query extends Component {
             profitprice4: this.props.profitprice4,
 
             camera: {
-                // aspect: Camera.constants.Aspect.fill,
-                // captureTarget: Camera.constants.CaptureTarget.disk,
-                // type: Camera.constants.Type.back,
-                // orientation: Camera.constants.Orientation.auto,
-                // flashMode: Camera.constants.FlashMode.auto
             },
             barcodeX: null,
             barcodeY: null,
@@ -967,15 +1044,14 @@ class Query extends Component {
             barcodeHeight: null,
             openFlash: false,
 
-            appVersion:'app5.1',
+            appVersion:'app5.2',
             isOnLine:true,
 
             IsModify:false,
         };
     }
 
-    componentDidMount() {
-    }
+
 
     goodsfromPriceD() {
         const {dispatch} = this.props;
@@ -1075,7 +1151,7 @@ class Query extends Component {
                     }, styles.card]}>
 
                         <Text style={{fontSize: setSpText(22), flex: 4, textAlign: 'center', color: '#fff'}}>
-                            Supnuevo(5.1)-{username}
+                            Supnuevo(5.2)-{username}
                         </Text>
                         <TouchableOpacity ref="menu" style={{
                             flex: 1,
@@ -1911,6 +1987,25 @@ class Query extends Component {
                             }}
                         />
                     </Modal>
+
+                    <Modal
+                        animationType={"slide"}
+                        transparent={false}
+                        visible={this.state.ventasInfoModalVisible}
+                        onRequestClose={() => {
+                            this.setState({ventasInfoModalVisible: false})
+                        }}>
+
+                        <VentasInfoModal
+                            onClose={() => {
+                                this.closeVentasInfoModal()
+                            }}
+                            navigate2Stock={()=>{
+                                this.navigate2Stock()
+                            }}
+                        />
+                    </Modal>
+
                     <WaitTip
                         ref="waitTip"
                         tipsName="正在查找..."
@@ -2279,6 +2374,7 @@ module.exports = connect(state => ({
         merchantId: state.user.supnuevoMerchantId,
         username: state.user.username,
         sessionId: state.user.sessionId,
+        auth:state.user.auth,
         codigo: state.sale.codigo,
         nombre: state.sale.nombre,
         oldPrice: state.sale.oldPrice,

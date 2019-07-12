@@ -88,7 +88,7 @@ class Announcement extends Component {
                     </TouchableOpacity>
 
                     <Text style={{fontSize: setSpText(20), flex: 10, textAlign: 'center', color: '#fff'}}>
-                        Supnuevo(5.1)-{this.props.username}
+                        Supnuevo(5.2)-{this.props.username}
                     </Text>
                 </View>
 

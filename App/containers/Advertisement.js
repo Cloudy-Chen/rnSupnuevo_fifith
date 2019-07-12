@@ -198,7 +198,7 @@ class AdvertiseMent extends Component {
                 <View
                     style={[{backgroundColor:'#387ef5',height:55,padding: 12,justifyContent: 'center',alignItems: 'center',flexDirection:'row'},styles.card]}>
                     <Text style={{fontSize:setSpText(20),flex:3,textAlign:'center',color:'#fff'}}>
-                        Supnuevo(5.1)-{this.props.username}
+                        Supnuevo(5.2)-{this.props.username}
                     </Text>
                 </View>
                 <View style={{width:width,flex:3}}>

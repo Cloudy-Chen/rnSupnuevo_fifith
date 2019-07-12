@@ -205,7 +205,7 @@ class My extends Component {
                         flexDirection: 'row'
                     }, styles.card]}>
                         <Text style={{fontSize: setSpText(20), flex: 3, textAlign: 'center', color: '#fff'}}>
-                            Supnuevo(5.1)-{this.props.username}
+                            Supnuevo(5.2)-{this.props.username}
                         </Text>
                     </View>
 

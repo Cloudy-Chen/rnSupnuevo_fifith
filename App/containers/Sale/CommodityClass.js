@@ -103,7 +103,7 @@ class CommodityClass extends Component{
                     </TouchableOpacity>
 
                     <Text style={{fontSize:setSpText(20),flex:5,textAlign:'center',color:'#fff'}}>
-                        Supnuevo(5.1)-{this.props.username}
+                        Supnuevo(5.2)-{this.props.username}
                     </Text>
 
                     <View style={{flex:1}}>

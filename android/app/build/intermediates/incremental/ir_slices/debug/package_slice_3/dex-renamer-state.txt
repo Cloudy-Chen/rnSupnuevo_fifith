@@ -1,4 +1,4 @@
-#Sun May 05 15:28:13 CST 2019
-base.0=/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/transforms/dexMerger/debug/679
+#Mon Jun 17 14:26:59 CST 2019
+base.0=/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/transforms/dexMerger/debug/694
 path.0=classes.dex
 renamed.0=classes.dex

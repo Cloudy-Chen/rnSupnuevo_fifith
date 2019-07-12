@@ -40,8 +40,8 @@ class App extends React.Component {
         super(props);
         const {dispatch} = this.props;
         this.state = {
-            tab: '改价',
-            selectedTab: '改价',
+            tab: '进货',
+            selectedTab: '进货',
             isConnected: null,
         }
     }
