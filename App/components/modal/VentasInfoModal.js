@@ -205,10 +205,10 @@ class VentasInfoModal extends Component{
                         <TouchableOpacity
                             style={{flexDirection:'row',height:40,alignItems:'flex-end'}}
                             onPress={
-                            ()=>{
-                                this.cancel();
-                            }
-                        }>
+                                ()=>{
+                                    this.cancel();
+                                }
+                            }>
                             <Icon name="arrow-left" size={20} color="#fff" />
                             <Text style={{fontSize:setSpText(17),flex:5,textAlign:'center',color:'#fff'}}>
                                 跳过首页

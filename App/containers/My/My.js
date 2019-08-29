@@ -191,6 +191,15 @@ class My extends Component {
         })
     }
 
+    navigateMyUnion() {
+        var myUnion = require('./MyUnion');
+        this.props.navigator.push({
+            name: 'myUnion',
+            component: myUnion,
+            params: {}
+        })
+    }
+
     render() {
 
         return (
@@ -262,6 +271,13 @@ class My extends Component {
                                               }}>
                                 <IconMaterialIcons name="add-shopping-cart" color="#515151" size={30}/>
                                 <Text style={styles.text}>他们替我改价</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.touch}
+                                              onPress={() => {
+                                                   this.navigateMyUnion()
+                                              }}>
+                                <IconMaterialIcons name="group-work" color="#515151" size={30}/>
+                                <Text style={styles.text}>我的超市联盟</Text>
                             </TouchableOpacity>
 
                             <View style={{flex: 1}}/>

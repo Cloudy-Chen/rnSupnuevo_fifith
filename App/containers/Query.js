@@ -42,7 +42,7 @@ import priceDeviation from './PriceSurvey/PriceDeviation';
 import GoodUpdate from './GoodUpdate';
 import GoodAdd from './GoodAdd';
 import GroupManage from './GroupManage/index';
-import {changeAuth, setGoodsInfo, setScanTimerAction} from "../action/actionCreator";
+import {changeAuth, setGoodsInfo, setScanTimerAction,loginAction} from "../action/actionCreator";
 import PriceSurvey from './PriceSurvey/PriceSurvey';
 import RNCamera from 'react-native-camera';
 import ReferencePrice from './ReferencePrice';
@@ -69,6 +69,8 @@ Text.render = _.wrap(Text.render, function (func, ...args) {
 })
 
 class Query extends Component {
+
+
 
     changeFlash() {
         this.setState({
@@ -205,6 +207,11 @@ class Query extends Component {
                 supnuevoMerchantId: merchantId
             }
         }).then((json) => {
+
+            if(json.re == -2){
+                this.props.dispatch(loginAction(username, password))
+            }
+
             if (json.errMessage !== null && json.errMessage !== undefined) {
                 var errMsg = json.errMessage.toString();
                 Alert.alert(
@@ -221,7 +228,6 @@ class Query extends Component {
                 return ;
             }
             else {
-
                 var goodInfo = json.object;
 
                 if (goodInfo.setSizeValue != undefined && goodInfo.setSizeValue != null
@@ -306,6 +312,11 @@ class Query extends Component {
                 merchantId: merchantId
             }
         }).then((json) => {
+
+            if(json.re == -2){
+                this.props.dispatch(loginAction(username, password))
+            }
+
             var errorMsg = json.message;
             this.reset();
             if (errorMsg !== null && errorMsg !== undefined && errorMsg !== "") {

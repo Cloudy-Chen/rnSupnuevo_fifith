@@ -52,21 +52,6 @@ export let loginAction = function (username, password, cb) {
                 }
                 else {
                     let sessionId = json.sessionId;
-                    // proxy.postes({
-                    //
-                    //     url: Config.server2 + '/func/fromOtherServerUserLogin',
-                    //
-                    //     headers: {
-                    //         'Content-Type': 'application/json'
-                    //         // 'Cookie': sessionId
-                    //     },
-                    //     body: {
-                    //         username: username,
-                    //         password: password,
-                    //         motherServerSessionId: sessionId,
-                    //     }
-                    // }).then((json) => {
-                    let jjson = json;
                     proxy.postes({
 
                         url: Config.server + '/func/merchant/getMerchantInitInfoMobile',

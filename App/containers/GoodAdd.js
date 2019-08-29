@@ -69,7 +69,7 @@ class GoodAdd extends Component {
                 return false;
             }
             if (this.state.newGoodInfo.codigo !== null || this.state.newGoodInfo.codigo !== undefined || this.state.newGoodInfo.codigo !== '') {
-                if (this.state.newGoodInfo.codigo.length !== 8 && this.state.newGoodInfo.codigo.length !== 13) {
+                if (this.state.newGoodInfo.codigo.length !== 8 && this.state.newGoodInfo.codigo.length !== 13 && this.state.newGoodInfo.codigo.length !== 12) {
                     alert("商品条码位数错误");
                     return false;
                 }

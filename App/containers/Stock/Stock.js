@@ -580,29 +580,29 @@ class Stock extends Component {
         this.navigatorVentasInfoModal()
 
         //这个页面在打开的时候直接调用这个方法
-        let userInput;
-        let stockSearchType;
-        PreferenceStore.get('stockSearch').then((val) => {
-            userInput = val;
-            return PreferenceStore.get('stockSearchType');
-        }).then((val) => {
-            stockSearchType = val;
-            if (userInput !== undefined && userInput !== null && userInput != ''
-                && stockSearchType !== undefined && stockSearchType !== null && stockSearchType != '') {
-                //TODO:auto-login
-                this.setState({
-                    companyinfo: userInput, showProgress: true
-                });
-                //这里把showProgress置成true
-                if (stockSearchType == 1) {
-                    this.state.companyinfo = userInput;
-                    this.fetchData_commodity();
-                } else if (stockSearchType == 2) {
-                    this.state.companyinfo = userInput;
-                    this.fetchData_ventas();
-                }
-            }
-        })
+        // let userInput;
+        // let stockSearchType;
+        // PreferenceStore.get('stockSearch').then((val) => {
+        //     userInput = val;
+        //     return PreferenceStore.get('stockSearchType');
+        // }).then((val) => {
+        //     stockSearchType = val;
+        //     if (userInput !== undefined && userInput !== null && userInput != ''
+        //         && stockSearchType !== undefined && stockSearchType !== null && stockSearchType != '') {
+        //         //TODO:auto-login
+        //         this.setState({
+        //             companyinfo: userInput, showProgress: true
+        //         });
+        //         //这里把showProgress置成true
+        //         if (stockSearchType == 1) {
+        //             this.state.companyinfo = userInput;
+        //             this.fetchData_commodity();
+        //         } else if (stockSearchType == 2) {
+        //             this.state.companyinfo = userInput;
+        //             this.fetchData_ventas();
+        //         }
+        //     }
+        // })
     }
 
     surequary() {
