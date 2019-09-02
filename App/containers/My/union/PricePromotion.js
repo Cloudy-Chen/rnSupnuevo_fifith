@@ -65,7 +65,7 @@ class PricePromotion extends Component {
                         <View style={{flex: 2}}>
                             <TouchableOpacity style={[{borderTopWidth: 1}, styles.touch]}
                                               onPress={() => {}}>
-                                <Text style={styles.text}>免费折扣</Text>
+                                <Text style={styles.text}>免量折扣</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={styles.touch}

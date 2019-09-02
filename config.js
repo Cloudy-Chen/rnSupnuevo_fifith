@@ -13,8 +13,8 @@ module.exports = {
     // server2: 'http://192.168.1.109:8080/supnuevo_ventas',
     // server: 'http://192.168.1.109:8080/supnuevo',
     // server2: 'http://personalexpdocker.cloudapp.net:8081',//ventas服务器old
-    server2:'http://Supnuevo-ventas.com.ar:8080',//ventas正式服务器
-    server: 'http://www.supnuevo.com.ar:8080',//超市正式服务器
+    server2:'http://supnuevo-ventas.com.ar',//ventas正式服务器
+    server: 'http://www.supnuevo.com.ar',//超市正式服务器
     // server2:'http://144.217.157.53:8080',//ventas服务器ip
     //server: 'http://personalexpdocker.cloudapp.net:8082',//超市正式服务器old
 //打包的时候检查是否把左右滑动跳转关掉了
