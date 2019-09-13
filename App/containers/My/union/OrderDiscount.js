@@ -18,13 +18,12 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {setSpText} from '../../../utils/ScreenUtil'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 const Dimensions = require('Dimensions');
 const {height, width} = Dimensions.get('window');
-import Icon from 'react-native-vector-icons/FontAwesome';
-import OrderDiscount from './OrderDiscount';
-import CommodityDiscount from './CommodityDiscount';
 
-class PricePromotion extends Component {
+class OrderDiscount extends Component {
     cancel() {
         const {navigator} = this.props;
         if (navigator) {
@@ -36,30 +35,7 @@ class PricePromotion extends Component {
         super(props);
         this.state = {
         }
-    }
 
-    navigateToOrderDiscount(){
-        const {navigator} = this.props;
-        if (navigator) {
-            navigator.push({
-                name: 'OrderDiscount',
-                component: OrderDiscount,
-                params: {
-                }
-            })
-        }
-    }
-
-    navigateToCommodityDiscount(){
-        const {navigator} = this.props;
-        if (navigator) {
-            navigator.push({
-                name: 'CommodityDiscount',
-                component: CommodityDiscount,
-                params: {
-                }
-            })
-        }
     }
 
     render() {
@@ -89,12 +65,12 @@ class PricePromotion extends Component {
                     <View style={{height: height - 140,}}>
                         <View style={{flex: 2}}>
                             <TouchableOpacity style={[{borderTopWidth: 1}, styles.touch]}
-                                              onPress={() => {this.navigateToCommodityDiscount()}}>
+                                              onPress={() => {}}>
                                 <Text style={styles.text}>免量折扣</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={styles.touch}
-                                              onPress={() => {this.navigateToOrderDiscount()}}>
+                                              onPress={() => {}}>
                                 <Text style={styles.text}>总量百分比折扣</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.touch}
@@ -121,75 +97,16 @@ class PricePromotion extends Component {
 
 var styles = StyleSheet.create
 ({
-    text: {
-        fontSize: setSpText(20),
-        paddingLeft: 10,
-        borderColor: '#DEDEDE',
-        borderLeftWidth: 1,
-        marginLeft:5,
-    },
-    touch: {
-        flex: 1,
-        marginRight: 10,
-        marginLeft: 10,
-        borderBottomWidth: 1,
-        alignItems: 'center',
-        flexDirection: 'row',
-        borderColor: '#DEDEDE',
-    },
-    card: {
-        borderTopWidth: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: 'rgba(0,0,0,0.1)',
-        shadowColor: '#ccc',
-        shadowOffset: {width: 2, height: 2,},
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
-    },
-    preview: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    overlay: {
-        position: 'absolute',
-        padding: 16,
-        right: 0,
-        left: 0,
-        alignItems: 'center',
-    },
-    box: {
-        position: 'absolute',
-        right: 1 / 2 * width - 100,
-        top: 1 / 2 * height - 100,
-        height: 200,
-        width: 200,
-        borderWidth: 1,
-        borderColor: '#387ef5',
-        backgroundColor: 'transparent'
-
-    },
-    bottomOverlay: {
-        bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    captureButton: {
-        padding: 15,
-        backgroundColor: 'white',
-        borderRadius: 40,
-    },
-
+    container:{
+        flex:1
+    }
 });
 
 
 module.exports = connect(state => ({
         merchantId: state.user.supnuevoMerchantId,
         username: state.user.username,
-        supnuevoMerchantId: state.user.supnuevoMerchantId,
         sessionId: state.user.sessionId,
     })
-)(PricePromotion);
+)(OrderDiscount);
 

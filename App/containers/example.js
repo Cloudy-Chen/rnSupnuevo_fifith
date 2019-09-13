@@ -316,6 +316,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
     },
+
 });
 
 module.exports = connect(state => ({})

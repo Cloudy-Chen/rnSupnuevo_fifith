@@ -102,6 +102,7 @@ export let loginAction = function (username, password, cb) {
                                                         supnuevoMerchantId: json.data.merchantId,
                                                         merchantType: json.data.merchantType,
                                                         password: password,
+                                                        unionId: json.data.unionId,
                                                     }
                                                 ));
                                                 dispatch(setJisuanPrice(json.data.addPriceMap));
@@ -131,6 +132,7 @@ export let loginAction = function (username, password, cb) {
                                             supnuevoMerchantId: json.data.merchantId,
                                             merchantType: json.data.merchantType,
                                             password: password,
+                                            unionId: json.data.unionId,
                                         }
                                     ));
                                     dispatch(setJisuanPrice(json.data.addPriceMap));
@@ -286,6 +288,7 @@ export let getSession = (ob) => {
             validate: true,
             username: ob.username,
             password: ob.password,
+            unionId: ob.unionId,
         };
     else
         return {

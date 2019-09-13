@@ -10,6 +10,7 @@ const initialState = {
     announcement: null,
     sessionId: null,
     password: null,
+    unionId: null,
 };
 
 let user = (state = initialState, action) => {
@@ -25,6 +26,7 @@ let user = (state = initialState, action) => {
                 merchantStates: action.merchantStates,
                 username: action.username,
                 password: action.password,
+                unionId: action.unionId,
             });
             break;
 

@@ -21,9 +21,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 var Dimensions = require('Dimensions');
 var {height, width} = Dimensions.get('window');
 import {MicrosoftMap} from "../../../components/rnMap/index";
-import edges from "../../../test/edges";
-import merchants from "../../../test/merchants";
+import Config from "../../../../config";
 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+var proxy = require('../../../proxy/Proxy');
 
 class MemberList extends Component {
 
@@ -37,11 +37,19 @@ class MemberList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            memberList:[],
+            edgeList:[],
         };
     }
 
+    componentDidMount(): void {
+        this.getMemberList();
+    }
+
     render() {
+
+        const {edgeList,memberList } = this.state;
+
         return (
             <View style={{flex: 1}}>
                 {/* header bar */}
@@ -74,12 +82,12 @@ class MemberList extends Component {
                 </View>
                 {/* body */}
                 <View style={{flex:1}}>
-                    <MicrosoftMap edges={edges} merchants={merchants}/>
+                    <MicrosoftMap edges={edgeList} merchants={memberList}/>
                     <View style={styles.listViewWrapper}>
                         <ListView
                             style={styles.listView}
                             automaticallyAdjustContentInsets={false}
-                            dataSource={ds.cloneWithRows(merchants)}
+                            dataSource={ds.cloneWithRows(memberList)}
                             renderRow={this.renderRow.bind(this)}/>
                     </View>
                 </View>
@@ -95,12 +103,28 @@ class MemberList extends Component {
                     justifyContent: 'flex-start', backgroundColor: '#fff',width:width
                 }}>
                     <View style={{paddingTop: 5, flexDirection: 'row'}}>
-                        <Text style={styles.renderText}>{rowData.address}</Text>
+                        <Text style={styles.renderText}>{rowData.direccion}</Text>
                     </View>
                 </View>
             </TouchableOpacity>;
         return row;
     };
+
+    getMemberList(){
+        proxy.postes({
+            url: Config.server + "/func/union/getSupnuevoBuyerUnionMapInfo",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                unionId: this.props.unionId,
+            }
+        }).then((json)=> {
+            if(json.re == 1){
+                this.setState({memberList:json.data.memberList,edgeList:json.data.edgeList})
+            }
+        }).catch((err)=>{alert(err);});
+    }
 }
 
 
@@ -136,9 +160,8 @@ var styles = StyleSheet.create({
 
 
 module.exports = connect(state => ({
-
+        unionId: state.user.unionId,
         username: state.user.username,
-
     })
 )(MemberList);
 

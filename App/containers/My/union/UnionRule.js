@@ -20,9 +20,10 @@ import {connect} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {setSpText} from "../../../utils/ScreenUtil";
+import Config from "../../../../config";
 var Dimensions = require('Dimensions');
 var {height, width} = Dimensions.get('window');
-
+var proxy = require('../../../proxy/Proxy');
 
 class UnionRule extends Component {
 
@@ -36,10 +37,14 @@ class UnionRule extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            minPrice:32,
-            maxPercent: 56.55,
-            statement: "说明文字"
+            orderMinLimit:0,
+            discountScale: 0,
+            regulation: "说明文字"
         };
+    }
+
+    componentDidMount(): void {
+        this.getUnionRegulation();
     }
 
     render() {
@@ -72,23 +77,42 @@ class UnionRule extends Component {
                 <View style={{marginTop: 20,flex:1}}>
                     <View style={[{borderTopWidth: 1}, styles.touch]}>
                         <Text style={styles.text}>本店最低最终最小购买量为：</Text>
-                        <Text style={[styles.text,{marginTop:20}]}>{this.state.minPrice} peso</Text>
+                        <Text style={[styles.text,{marginTop:20}]}>{this.state.orderMinLimit} peso</Text>
                     </View>
 
                     <View style={[{borderTopWidth: 1}, styles.touch]}>
                         <Text style={styles.text}>本店折扣商品占总购买量的百分比为：</Text>
-                        <Text style={[styles.text,{marginTop:20}]}>{this.state.maxPercent} %</Text>
+                        <Text style={[styles.text,{marginTop:20}]}>{this.state.discountScale} %</Text>
                     </View>
 
                     <View style={[{borderTopWidth: 1}, styles.touch]}>
                         <Text style={styles.text}>本店其他关于购买及送货的文字说明为（西语）：</Text>
                         <View style={[{borderWidth: 1}, styles.textInput]}>
-                        <Text style={styles.text}>{this.state.statement} </Text>
+                        <Text style={styles.text}>{this.state.regulation} </Text>
                         </View>
                     </View>
                 </View>
             </View>
         )
+    }
+
+    getUnionRegulation(){
+        proxy.postes({
+            url: Config.server + "/func/union/getSupnuevoBuyerUnionRegulationInfo",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                unionId: this.props.unionId,
+            }
+        }).then((json)=> {
+            if(json.re == 1){
+                var orderMinLimit = json.data.orderMinLimit;
+                var discountScale = json.data.discountScale;
+                var regulation = json.data.regulation;
+                this.setState({orderMinLimit:orderMinLimit, discountScale:discountScale, regulation:regulation})
+            }
+        }).catch((err)=>{alert(err);});
     }
 }
 
@@ -135,7 +159,7 @@ var styles = StyleSheet.create({
 
 
 module.exports = connect(state => ({
-
+        unionId: state.user.unionId,
         username: state.user.username,
 
     })

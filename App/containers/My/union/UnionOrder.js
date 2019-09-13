@@ -21,6 +21,8 @@ import InputWithCalendar from '../../../components/InputWithCalendar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {TYPE_TEXT,InformationItem} from '../../../components/InformationItem'
 import TableView from "../../../components/TableView";
+import Config from "../../../../config";
+var proxy = require('../../../proxy/Proxy');
 
 var {height, width} = Dimensions.get('window');
 const orderHead = ["商品名称","数量","价格","小计"];
@@ -43,14 +45,20 @@ class UnionOrder extends Component {
         super(props);
         this.state = {
             orderDate:'请输入订单日期',
+            orderList:[],
         };
     }
 
+    componentDidMount(): void {
+        this.getOrderListOfDate(null);
+    }
+
     render() {
+
+        const {orderList} = this.state;
+
         return (
             <View style={{flex: 1}}>
-                {/* header bar */}
-
                 <View style={{backgroundColor: '#387ef5', height: 55, padding: 12, justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
                     <TouchableOpacity style={{flex: 1, height: 45, marginRight: 10, marginTop:10}}
                                       onPress={() => {this.goBack();}}>
@@ -70,21 +78,68 @@ class UnionOrder extends Component {
                             date={this.state.orderDate}
                             onDateChange={(value)=>{
                                 this.setState({orderDate:value});
+                                this.getOrderListOfDate(value);
                             }}/>
-                        <View style={styles.basicInfoContainer}>
-                            <InformationItem key = {0} type = {TYPE_TEXT} title = "客户手机号码" content = "11549878988"/>
-                            <InformationItem key = {1} type = {TYPE_TEXT} title = "送货地址" content = "san martin 2110 olivos bs.as"/>
-                            <InformationItem key = {2} type = {TYPE_TEXT} title = "接货人电话" content = "114399892990"/>
-                            <InformationItem key = {3} type = {TYPE_TEXT} title = "接货人" content = "Fermando laguna"/>
-                        </View>
-                        <View style={styles.tableInfoCard}>
-                            <TableView title={"订单内容"} headerList={orderHead} dataList={orderList} renderAux={null}/>
-                        </View>
+                        {this._renderOrderList(orderList)}
                     </View>
                 </ScrollView>
 
             </View>
         )
+    }
+
+    _renderOrderList(orderList){
+        let orderListView=[];
+        if(orderList && orderList.length>0){
+            orderList.map((order,i)=>{
+                const telephone = order.telephone;
+                const orderInfo = order.order;
+                orderListView.push([
+                    <View style={styles.basicInfoContainer}>
+                        <InformationItem key = {0} type = {TYPE_TEXT} title = "客户手机号码" content = {telephone}/>
+                        <InformationItem key = {1} type = {TYPE_TEXT} title = "送货地址" content = {orderInfo.receiverAddr}/>
+                        <InformationItem key = {2} type = {TYPE_TEXT} title = "接货人电话" content = {orderInfo.receiverPhone}/>
+                        <InformationItem key = {3} type = {TYPE_TEXT} title = "接货人" content = {orderInfo.receiverName}/>
+                    </View>,
+                    <View style={styles.tableInfoCard}>
+                        <TableView title={"订单内容"} headerList={orderHead} dataList={this._transformOrderListToArray(orderInfo.itemList)} renderAux={null}/>
+                    </View>]
+                );
+            })}
+            return orderListView;
+        }
+
+    _transformOrderListToArray(itemList){
+        var array=[];
+        if(itemList && itemList.length>0){
+        itemList.map((order,i)=>{
+            //"商品名称","数量","价格","小计"
+            var item = [];
+            item.push(order.nombre);
+            item.push(order.amount);
+            item.push(order.price);
+            item.push(order.total);
+            array.push(item);
+        })}
+        return array;
+    }
+
+    getOrderListOfDate(orderDate){
+        proxy.postes({
+            url: Config.server + "/func/union/getSupnuevoCustomerOrderListOfDateByUnion",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                orderDate: orderDate,
+                unionId: this.props.unionId,
+            }
+        }).then((json)=> {
+            if(json.re === 1){
+                var data = json.data;
+                this.setState({orderList:data})
+            }
+        }).catch((err)=>{alert(err);});
     }
 }
 
@@ -125,7 +180,7 @@ var styles = StyleSheet.create({
 
 
 module.exports = connect(state => ({
-
+        unionId: state.user.unionId,
         username: state.user.username,
 
     })

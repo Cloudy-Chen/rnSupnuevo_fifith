@@ -19,10 +19,10 @@ import {connect} from 'react-redux';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import goods from "../../../test/goods";
+import Config from "../../../../config";
 var Dimensions = require('Dimensions');
 var {height, width} = Dimensions.get('window');
-
-var advertisements = [{url:""},{url:""},{url:""},{url:""},{url:""},{url:""},]
+var proxy = require('../../../proxy/Proxy');
 
 class PricePublicity extends Component {
 
@@ -36,7 +36,12 @@ class PricePublicity extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            advertisements:[],
         };
+    }
+
+    componentDidMount(): void {
+        this.getAdvertisementList();
     }
 
     render() {
@@ -46,7 +51,7 @@ class PricePublicity extends Component {
             <ScrollView>
                 <ListView
                     automaticallyAdjustContentInsets={false}
-                    dataSource={ds.cloneWithRows(advertisements)}
+                    dataSource={ds.cloneWithRows(this.state.advertisements)}
                     renderRow={this.renderRow.bind(this)}
                 />
             </ScrollView>;
@@ -90,7 +95,7 @@ class PricePublicity extends Component {
 
     renderRow(rowData) {
 
-        const image = rowData.url?{uri:rowData.url}:require('../../../img/img_logo.png');
+        const image = rowData.url?{uri:rowData.image}:require('../../../img/img_logo.png');
 
         var row =
             <TouchableOpacity onPress={() => {}}>
@@ -102,6 +107,22 @@ class PricePublicity extends Component {
                 </View>
             </TouchableOpacity>;
         return row;
+    }
+
+    getAdvertisementList(){
+        proxy.postes({
+            url: Config.server + "/func/union/getSupnuevoBuyerUnionAdvertisementList",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: {
+                unionId: this.props.unionId,
+            }
+        }).then((json)=> {
+            if(json.re == 1){
+                this.setState({advertisements:json.data})
+            }
+        }).catch((err)=>{alert(err);});
     }
 }
 
@@ -130,7 +151,7 @@ var styles = StyleSheet.create({
 
 
 module.exports = connect(state => ({
-
+        unionId: state.user.unionId,
         username: state.user.username,
 
     })

@@ -193,12 +193,6 @@ class VentasList extends Component {
                         } else {
                             if (json.ArrayList !== undefined) {
                                 let list = json.ArrayList;
-
-                                function priceSort(obja, objb) {
-
-                                    return obja.price - objb.price;
-                                }
-
                                 list.sort(priceSort);
 
                                 this.setState({showProgress: false, ventasListFromCommodityId: list});
@@ -438,6 +432,10 @@ var styles = StyleSheet.create({
     },
 });
 
+function priceSort(obja, objb) {
+
+    return obja.price - objb.price;
+}
 
 module.exports = connect(state => ({
         username: state.user.username,
