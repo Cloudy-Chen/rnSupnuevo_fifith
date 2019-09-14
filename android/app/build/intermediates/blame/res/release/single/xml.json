@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/res/merged/release/xml/network_security_config.xml",
+        "source": "/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/src/main/res/xml/network_security_config.xml"
+    },
+    {
+        "merged": "/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/res/merged/release/xml/preferences.xml",
+        "source": "/Users/danding/.gradle/caches/transforms-1/files-1.1/react-native-0.44.0.aar/bc1ce8f7240f7a60797a774c71f274d0/res/xml/preferences.xml"
+    }
+]

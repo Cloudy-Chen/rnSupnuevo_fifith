@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun May 05 15:53:14 CST 2019
+#Sat Sep 14 15:50:31 CST 2019
 5.base=/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/assets/release
 22.path=fonts/Zocial.ttf
 32.set=NATIVE_RESOURCE

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/danding/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.1.0.aar/ce34f354bcdf1ccd221818ff4a63b342/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Users/danding/Documents/supnuevo_workspace/rnSupnuevo_fifith/android/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/danding/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.1.0.aar/ce34f354bcdf1ccd221818ff4a63b342/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]
